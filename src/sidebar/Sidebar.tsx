@@ -1,6 +1,7 @@
 import * as React from 'react';
-import './index.css'
-import {useRef} from "react";
+import './sidebar.css'
+import {useEffect, useRef, useState} from "react";
+import {Topbar} from "./Topbar";
 
 export interface SidebarItem {
     className: string;
@@ -10,13 +11,32 @@ export interface SidebarItem {
 }
 
 interface Props {
-    expanded: boolean;
     children: any;
-    items: SidebarItem[]
+    items: SidebarItem[];
+    topBarRightElement?: JSX.Element;
+    onTopBarExpanded?: (expanded: boolean) => void;
+    topbarStyle?: React.CSSProperties
+
 }
 
 export const Sidebar: React.FC<Props> = (props) => {
     const prevLiClickedRef = useRef<any>();
+    const [sidebarExpanded, setSidebarExpanded] = useState(false);
+
+    useEffect(() => {
+        if(props.onTopBarExpanded)
+            props.onTopBarExpanded(sidebarExpanded);
+        const isDesktop = window.innerWidth > 1024;
+        const maskElement = document.getElementById('rb-sidebar-overlay-mask');
+        if(maskElement){
+            if(!isDesktop && sidebarExpanded){
+                maskElement.classList.add('rb-sidebar-overlay-mask');
+            }else{
+                maskElement.classList.remove('rb-sidebar-overlay-mask');
+            }
+        }
+    }, [sidebarExpanded]);
+
 
     const handleItemClicked = (index: string, e: React.MouseEvent<HTMLLIElement, MouseEvent>, item: SidebarItem) => {
         item.command();
@@ -58,7 +78,7 @@ export const Sidebar: React.FC<Props> = (props) => {
                         <li className={`${item.className} ${parentId ? 'rb-no-border' : ''}`}
                             onClick={(e) => handleItemClicked(index, e, item)}>
                             {
-                                props.expanded ?
+                                sidebarExpanded ?
                                     <span>
                                         <a>{item.label}</a>
                                         {item.children && item.children.length > 0 ?
@@ -83,11 +103,13 @@ export const Sidebar: React.FC<Props> = (props) => {
     }
 
     return <>
-        <div className={`rb-sidebar-wrapper ${props.expanded ? 'rb-sidebar-expanded' : 'rb-sidebar-collapsed'}`}>
+        <div className={`rb-sidebar-wrapper ${sidebarExpanded ? 'rb-sidebar-expanded' : 'rb-sidebar-collapsed'}`}>
             {createMenu(props.items, undefined)}
         </div>
 
-        <main className={props.expanded ? 'rb-sidebar-content-expanded' : ''}>
+        <div className={`rb-sidebar-mask ${sidebarExpanded ? 'rb-sidebar-mask-visible' : ''}`}></div>
+        <Topbar style={props.topbarStyle} onSidebarToggle={() => setSidebarExpanded(!sidebarExpanded)} expanded={sidebarExpanded} topBarRightElement={props.topBarRightElement} />
+        <main className={`${sidebarExpanded ? 'rb-sidebar-content-expanded' : 'rb-sidebar-content-collapsed'}`}>
             {props.children}
         </main>
     </>

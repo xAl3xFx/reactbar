@@ -1,12 +1,14 @@
 .rb-sidebar-wrapper{
     height: 100%;
     width:50px;
-    background: aliceblue;
+    background: linear-gradient(180deg,#f3f4f9 0,#d7dbe8);
+    transition: margin-left 0.25s, width 0.25s;
     position: fixed;
-    transition: width 0.25s;
+    top: 0;
 }
 
 main{
+    margin-top:50px;
     margin-left: 50px;
     transition: margin-left 0.25s;
 }
@@ -45,6 +47,36 @@ main{
     font-weight: bolder !important;
 }
 
+.rb-sidebar-overlay {
+    position: fixed;
+    top: 50px;
+    z-index: 1000;
+}
+
+.rb-sidebar-mask{
+    display:none;
+    top: 50px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 998;
+    background-color: #424242;
+    opacity: .7;
+}
+
+.rb-sidebar-content-expanded.rb-sidebar-content-overlay{
+    margin-left: 0;
+}
+
+.rb-sidebar-content-collapsed.rb-sidebar-content-overlay{
+    margin-top: 50px;
+}
+
+.rb-sidebar-content-static{
+    margin-top: 50px;
+}
+
 .rb-sidebar-child:hover{
     color: unset !important;
     cursor: initial !important;
@@ -81,4 +113,25 @@ main{
 
 .rb-sidebar-content-expanded{
     margin-left:250px;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .rb-sidebar-wrapper{
+        z-index: 1000;
+        top: 50px;
+    }
+    .rb-sidebar-wrapper.rb-sidebar-collapsed {
+        margin-left: -50px;
+    }
+    .rb-sidebar-content-expanded{
+        margin-left: 0;
+
+    }
+    .rb-sidebar-mask.rb-sidebar-mask-visible{
+        display: block;
+    }
+    main {
+        margin-left: 0px;
+    }
 }

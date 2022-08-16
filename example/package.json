@@ -9,14 +9,13 @@
   },
   "dependencies": {
     "react-app-polyfill": "^1.0.0",
-    "primeicons": "^5.0.0"
-
+    "primeicons": "^5.0.0",
+    "primereact": "^8.3.0"
   },
   "alias": {
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
-    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling",
-    "primereact": "../node_modules/primereact"
+    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
   },
   "devDependencies": {
     "@types/react": "^16.9.11",

@@ -19,8 +19,6 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "classnames": "2.3.1",
-    "primereact": ">=7.2",
     "react": ">=16"
   },
   "husky": {
@@ -52,7 +50,6 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "husky": "^8.0.1",
-    "primereact": "^8.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.54.4",

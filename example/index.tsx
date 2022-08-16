@@ -1,18 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Sidebar, SidebarItem} from '../src/sidebar';
+import {Sidebar, SidebarItem} from '../src/sidebar/Sidebar';
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import './index.css'
-import {Button} from "primereact/button";
 import "primeicons/primeicons.css";
-import {useState} from "react";
 import {Divider} from "primereact/divider";
 import {DataTable} from "primereact/datatable";
-import {Test} from "../src/sidebar/test";
+import {Button} from "primereact/button";
 
 const App = () => {
-  const [expanded, setExpanded] = useState(false);
 
   const items : SidebarItem[] = [
     {
@@ -39,9 +36,13 @@ const App = () => {
     }
   ]
 
+  const topbarRightElement = <>
+    <Button icon={'pi pi-search'} label={'heelo'}/>
+  </>
+
   return <>
-    <Sidebar expanded={expanded} items={items} >
-      <Button  icon={'pi pi-bars'} onClick={() => setExpanded(!expanded)} />
+    <Sidebar items={items} topBarRightElement={topbarRightElement} >
+      <label>Hello</label>
       <Divider>
         asd
       </Divider>

@@ -1,0 +1,52 @@
+.rb-topbar-wrapper{
+    height: 50px;
+    background: linear-gradient(90deg,#0388e5 0,#07bdf4);
+    z-index: 1000;
+    left: 50px;
+    width: calc(100% - 50px);
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.rb-topbar-wrapper #toggleSidebar{
+    background: transparent;
+    border: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
+.rb-topbar-expanded {
+    margin-left: 200px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .rb-topbar-wrapper {
+        left: 0;
+        width: 100%;
+    }
+
+    .rb-topbar-wrapper:not(.rb-topbar-expanded){
+        transition: margin-left 0.25s, left 0.25s, width 0.25s;
+    }
+
+    .rb-topbar-wrapper.rb-topbar-expanded {
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .rb-topbar-wrapper{
+        transition: margin-left 0.25s, left 0.25s, width 0.25s;
+    }
+    .rb-topbar-wrapper.rb-topbar-expanded{
+        width: calc(100% - 250px)
+    }
+
+}
