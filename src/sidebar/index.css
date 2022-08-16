@@ -1,0 +1,84 @@
+.rb-sidebar-wrapper{
+    height: 100%;
+    width:50px;
+    background: aliceblue;
+    position: fixed;
+    transition: width 0.25s;
+}
+
+main{
+    margin-left: 50px;
+    transition: margin-left 0.25s;
+}
+
+.rb-sidebar-expanded{
+    width: 250px;
+}
+
+.rb-sidebar-collapsed ul{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.rb-sidebar-collapsed ul li{
+    padding: 1rem;
+    border-bottom: 1px solid rgba(207,211,224,.6);
+}
+
+.rb-sidebar-expanded ul{
+    user-select: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.rb-sidebar-hidden{
+    display: none !important;
+}
+
+.rb-sidebar-active {
+    color:#0388e5 !important;
+    font-weight: bolder !important;
+}
+
+.rb-sidebar-child:hover{
+    color: unset !important;
+    cursor: initial !important;
+}
+
+.rb-no-border{
+    border:none !important;
+}
+
+.rb-sidebar-collapsed .rb-no-border{
+    padding: .75rem 0;
+}
+
+.rb-sidebar-expanded ul li{
+    user-select: none;
+    padding: 1rem;
+    display: flex;
+    border-bottom: 1px solid rgba(207,211,224,.6);
+}
+
+.rb-sidebar-expanded ul li span{
+    padding-left: 0.5rem;
+}
+
+.rb-sidebar-expanded ul li span i{
+    position: absolute;
+    right: 1rem;
+}
+
+.rb-sidebar-expanded ul li:hover, .rb-sidebar-collapsed ul li:hover{
+    color:#0388e5;
+    cursor: pointer;
+}
+
+.rb-sidebar-content-expanded{
+    margin-left:250px;
+}
