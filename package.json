@@ -34,7 +34,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "reactbar",
+  "name": "@xal3xfx/reactbar",
   "author": "Alex Petrov",
   "module": "dist/reactbar.esm.js",
   "size-limit": [
