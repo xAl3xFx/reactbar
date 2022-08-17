@@ -9,11 +9,8 @@ import {Divider} from "primereact/divider";
 import {DataTable} from "primereact/datatable";
 import {Button} from "primereact/button";
 import reportWebVitals from "./reportWebVitals";
-import {useEffect, useState} from "react";
-import {InputText} from "primereact/inputtext";
 
 const App = () => {
-  const [component, setComponent] = useState<any>(null);
   const items : SidebarItem[] = [
     {
       className: 'pi pi-home',
@@ -39,12 +36,6 @@ const App = () => {
     }
   ]
 
-  useEffect(() => {
-    setTimeout(() => {
-      setComponent(<Button>Hello</Button>);
-    }, 4000)
-  }, []);
-
 
   const topbarRightElement = <>
     <Button icon={'pi pi-search'} label={'heelo'}/>
@@ -52,8 +43,7 @@ const App = () => {
 
   return <>
     <Sidebar items={items} topBarRightElement={topbarRightElement} >
-      <label>Hello</label>
-      {component}
+      <h1>Hello</h1>
       <Divider>
         asd
       </Divider>

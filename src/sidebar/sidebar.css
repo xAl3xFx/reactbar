@@ -69,6 +69,11 @@ main{
     margin-left: 0;
 }
 
+.rb-sidebar-content-collapsed,.rb-sidebar-content-expanded{
+    display: flex;
+    flex-direction: column;
+}
+
 .rb-sidebar-content-collapsed.rb-sidebar-content-overlay{
     margin-top: 50px;
 }
