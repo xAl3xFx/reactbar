@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './sidebar.css'
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import {Topbar} from "./Topbar";
 
 export interface SidebarItem {
@@ -15,7 +15,7 @@ interface Props {
     items: SidebarItem[];
     topBarRightElement?: JSX.Element;
     onTopBarExpanded?: (expanded: boolean) => void;
-    topbarStyle?: React.CSSProperties
+    topbarStyle?: React.CSSProperties;
 
 }
 
@@ -23,19 +23,6 @@ export const Sidebar: React.FC<Props> = (props) => {
     const prevLiClickedRef = useRef<any>();
     const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
-    useEffect(() => {
-        if(props.onTopBarExpanded)
-            props.onTopBarExpanded(sidebarExpanded);
-        const isDesktop = window.innerWidth > 1024;
-        const maskElement = document.getElementById('rb-sidebar-overlay-mask');
-        if(maskElement){
-            if(!isDesktop && sidebarExpanded){
-                maskElement.classList.add('rb-sidebar-overlay-mask');
-            }else{
-                maskElement.classList.remove('rb-sidebar-overlay-mask');
-            }
-        }
-    }, [sidebarExpanded]);
 
 
     const handleItemClicked = (index: string, e: React.MouseEvent<HTMLLIElement, MouseEvent>, item: SidebarItem) => {
@@ -86,7 +73,7 @@ export const Sidebar: React.FC<Props> = (props) => {
                                             : null
                                         }
                                     </span>
-                                : null
+                                    : null
                             }
 
                         </li>
@@ -108,7 +95,7 @@ export const Sidebar: React.FC<Props> = (props) => {
         </div>
 
         <div className={`rb-sidebar-mask ${sidebarExpanded ? 'rb-sidebar-mask-visible' : ''}`}></div>
-        <Topbar style={props.topbarStyle} onSidebarToggle={() => setSidebarExpanded(!sidebarExpanded)} expanded={sidebarExpanded} topBarRightElement={props.topBarRightElement} />
+        <Topbar onSidebarToggle={() => setSidebarExpanded(!sidebarExpanded)} expanded={sidebarExpanded} topBarRightElement={props.topBarRightElement} style={props.topbarStyle} />
         <main className={`${sidebarExpanded ? 'rb-sidebar-content-expanded' : 'rb-sidebar-content-collapsed'}`}>
             {props.children}
         </main>
