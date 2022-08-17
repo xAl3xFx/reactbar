@@ -4,8 +4,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
@@ -62,8 +61,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "classnames": "^2.3.1"
   }
 }
