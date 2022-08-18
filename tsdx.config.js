@@ -1,5 +1,5 @@
 const postcss = require('rollup-plugin-postcss');
-import svg from 'rollup-plugin-svg'
+const svg = require('rollup-plugin-svg')
 
 module.exports = {
     rollup(config, options) {
