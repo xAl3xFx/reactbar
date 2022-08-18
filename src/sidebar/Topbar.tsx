@@ -1,4 +1,6 @@
 import React, {useEffect, useRef} from 'react';
+import bars from './icons/bars-solid.svg';
+
 import './topbar.css'
 
 interface Props {
@@ -19,7 +21,7 @@ export const Topbar : React.FC<Props> = props => {
 
     return <>
         <nav style={props.style} className={`rb-topbar-wrapper ${props.expanded ? 'rb-topbar-expanded' : ''}`}>
-            <button id={'toggleSidebar'} className={'pi pi-bars'} onClick={props.onSidebarToggle} />
+            <button id={'toggleSidebar'} onClick={props.onSidebarToggle} ><img src={bars} /></button>
             {props.topBarRightElement}
         </nav>
     </>

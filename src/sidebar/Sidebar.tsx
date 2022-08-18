@@ -2,6 +2,8 @@ import * as React from 'react';
 import './sidebar.css'
 import {useRef, useState} from "react";
 import {Topbar} from "./Topbar";
+import chevronUp from './icons/chevron-up-solid.svg';
+import chevronDown from './icons/chevron-down-solid.svg';
 
 export interface SidebarItem {
     className: string;
@@ -25,16 +27,20 @@ export const Sidebar: React.FC<Props> = (props) => {
 
 
 
-    const handleItemClicked = (index: string, e: React.MouseEvent<HTMLLIElement, MouseEvent>, item: SidebarItem) => {
+    const handleItemClicked = (index: string, item: SidebarItem) => {
         item.command();
 
-        if (prevLiClickedRef.current && prevLiClickedRef.current.classList) {
+        const liElement = document.getElementById("li-" + index);
+        if(!liElement)
+            return;
+
+        if (prevLiClickedRef.current && prevLiClickedRef.current.classList ) {
             prevLiClickedRef.current.classList.remove('rb-sidebar-active');
         }
 
-        //@ts-ignore
-        e.target.classList.add('rb-sidebar-active');
-        prevLiClickedRef.current = e.target;
+
+        liElement.classList.add('rb-sidebar-active');
+        prevLiClickedRef.current = liElement;
 
         const child = document.getElementById("children-" + index);
         if (child) {
@@ -45,12 +51,13 @@ export const Sidebar: React.FC<Props> = (props) => {
                 //@ts-ignore
                 const childSpan = parent.querySelector("span");
                 if (childSpan) {
-                    const i = childSpan.querySelector("i");
-                    if (i) {
+                    const img = childSpan.querySelector("img");
+                    if (img) {
                         if (hidden)
-                            i.classList = "pi pi-chevron-up"
+                            img.src = chevronUp
                         else
-                            i.classList = "pi pi-chevron-down"
+                            img.src = chevronDown;
+                            // i.classList = "pi pi-chevron-down"
                     }
                 }
             }
@@ -62,14 +69,14 @@ export const Sidebar: React.FC<Props> = (props) => {
             {items.map((item, elementIndex) => {
                     const index = (parentId ? parentId + '-' + elementIndex : String(elementIndex))
                     return <React.Fragment key={index}>
-                        <li className={`${item.className} ${parentId ? 'rb-no-border' : ''}`}
-                            onClick={(e) => handleItemClicked(index, e, item)}>
+                        <li id={'li-' + index} className={`${item.className} ${parentId ? 'rb-no-border' : ''}`}
+                            onClick={() => handleItemClicked(index, item)}>
                             {
                                 sidebarExpanded ?
                                     <span>
                                         <a>{item.label}</a>
                                         {item.children && item.children.length > 0 ?
-                                            <i className={'pi pi-chevron-down'}></i>
+                                            <img src={chevronDown}></img>
                                             : null
                                         }
                                     </span>
