@@ -5,7 +5,7 @@ module.exports = {
     rollup(config, options) {
         config.plugins.push(
             postcss(),
-            svg()
+            svg({base64: true})
         );
         return config;
     },
