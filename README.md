@@ -49,14 +49,14 @@ html, #root{
 ```
 
 ## Desktop
-| Expanded                | Collapsed           |
-|-------------------------|---------------------|
-| ![img_1.png](img_1.png) | ![img.png](img.png) |
+| Expanded                  | Collapsed             |
+|---------------------------|-----------------------|
+| ![img_1.png](./img_1.png) | ![img.png](./img.png) |
 
 ## Mobile
-| Expanded                | Collapsed               |
-|-------------------------|-------------------------|
-| ![img_3.png](img_3.png) | ![img_2.png](img_2.png) |
+| Expanded                  | Collapsed                 |
+|---------------------------|---------------------------|
+| ![img_3.png](./img_3.png) | ![img_2.png](./img_2.png) |
 
 
 ### Example
