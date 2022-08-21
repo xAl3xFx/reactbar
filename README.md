@@ -49,14 +49,14 @@ html, #root{
 ```
 
 ## Desktop
-| Expanded                  | Collapsed             |
-|---------------------------|-----------------------|
-| ![img_1.png](./img_1.png) | ![img.png](./img.png) |
+| Expanded                                                                         | Collapsed        |
+|----------------------------------------------------------------------------------|------------------|
+| ![img_1.png](https://github.com/xAl3xFx/reactbar/blob/master/img_1.png?raw=true) | ![img.png](https://github.com/xAl3xFx/reactbar/blob/master/img.png?raw=true)     |
 
 ## Mobile
-| Expanded                  | Collapsed                 |
-|---------------------------|---------------------------|
-| ![img_3.png](./img_3.png) | ![img_2.png](./img_2.png) |
+| Expanded                                                                         | Collapsed                                                                        |
+|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| ![img_3.png](https://github.com/xAl3xFx/reactbar/blob/master/img_3.png?raw=true) | ![img_2.png](https://github.com/xAl3xFx/reactbar/blob/master/img_2.png?raw=true) |
 
 
 ### Example
