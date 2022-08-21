@@ -44,6 +44,16 @@
       "limit": "10 KB"
     }
   ],
+  "keywords": [
+    "react",
+    "reactjs",
+    "navbar",
+    "sidebar",
+    "navigation",
+    "menu",
+    "nav",
+    "bar"
+  ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.0.1",
     "@types/react": "^18.0.17",
