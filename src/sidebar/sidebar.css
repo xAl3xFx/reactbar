@@ -107,6 +107,15 @@ main{
     width:100%;
 }
 
+.rb-sidebar-expanded ul li span a{
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+}
+
+.rb-sidebar-wrapper ul {
+    list-style: none;
+}
+
 .rb-sidebar-expanded ul li span img{
     position: absolute;
     right: 1.5rem;

@@ -1,160 +1,160 @@
-# TSDX React User Guide
+# reactbar
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+> Navigation bars for React applications.
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+## Dependencies
+> react >= 16
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+## Table of contents
 
-## Commands
+- [Project Name](#project-name)
+    - [Dependencies](#dependencies)
+    - [Table of contents](#table-of-contents)
+    - [Getting Started](#getting-started)
+    - [Usage](#usage)
+    - [Contributing](#contributing)
+    - [Built With](#built-with)
+    - [Versioning](#versioning)
+    - [Authors](#authors)
+    - [License](#license)
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+## Installation
 
-The recommended workflow is to run TSDX in one terminal:
-
-```bash
-npm start # or yarn start
+### npm
+```sh
+$ npm install @xal3xfx/reactbar
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+### yarn
 
-Then run the example inside another:
-
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+```sh
+$ yarn add @xal3xfx/reactbar
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, we use [Parcel's aliasing](https://parceljs.org/module_resolution.html#aliases).
+# Usage
 
-To do a one-off build, use `npm run build` or `yarn build`.
+## Sidebar
 
-To run tests, use `npm test` or `yarn test`.
+The **Sidebar** is a wrapper for your application. Put all of your components inside the **Sidebar**.
 
-## Configuration
+> Recommended to have `height: 100%` on **html** and **#root** and no `margin` on **body**.
+```css
+body{
+    margin: 0;
+}
 
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-### Bundle analysis
-
-Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `npm run size` and visulize it with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/example
-  index.html
-  Sidebar.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  Sidebar.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
+html, #root{
+    height: 100%;
 }
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+## Desktop
+| Expanded                | Collapsed           |
+|-------------------------|---------------------|
+| ![img_1.png](img_1.png) | ![img.png](img.png) |
 
-## Module Formats
+## Mobile
+| Expanded                | Collapsed               |
+|-------------------------|-------------------------|
+| ![img_3.png](img_3.png) | ![img_2.png](img_2.png) |
 
-CJS, ESModules, and UMD module formats are supported.
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+### Example
 
-## Deploying the Example Playground
+```typescript jsx
+import * as React  from 'react';
+import {Sidebar, SidebarItem} from "@xal3xfx/reactbar";
+import './index.css'
 
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
+const App = () => {
+    const items : SidebarItem[] = [
+        {
+            className: 'fas fa-house',
+            command: () => console.log('home'),
+            label: "Home",
+            children: [
+                {
+                    className: 'fa fa-list',
+                    command: () => console.log('info 1'),
+                    label: "Info",
+                },
+                {
+                    className: 'fa fa-list',
+                    command: () => console.log('info 2'),
+                    label: "Info2",
+                }
+            ]
+        },
+        {
+            className: 'fas fa-search',
+            command: () => 0,
+            label: "Search"
+        }
+    ]
 
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
+    return <>
+        <Sidebar items={items} >
+            <h1>App component</h1>
+            <ChildComponent />
+        </Sidebar>
+    </>
+};
+
+const ChildComponent = () => {
+    return <>
+        I am child
+    </>
+}
+
+export default App;
 ```
 
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
+> Sidebar has required `items` property which is of type `SidebarItem[]` and represents the items in the sidebar menu.
 
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
+#### SidebarItem
+```typescript
+interface SidebarItem {
+    className: string;
+    label: string;
+    command: () => void;
+    children?: SidebarItem[]
+}
 ```
 
-## Named Exports
+| Name       | Description                                                                                       | Default Value |
+|------------|---------------------------------------------------------------------------------------------------|---------------|
+| className  | className for the item in the list. You can use it to put icon to the list item.                  | required      |
+| label      | text to display for the item in the list.                                                         | required      |
+| command    | function callback which is executed when the item in the list is clicked.                         | required      |
+| children   | If you want to have expandable item in the list you should pass children which is `SidebarItem[]` | undefined     | 
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
 
-## Including Styles
+### Props
+| Name                       | Description                                                                                                                                                                                   | Default Value |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| items                      | `SidebarItem[]`                                                                                                                                                                               | required      |
+| topBarRightElement         | Any `JSX.Element` which you want to be displayed on the right of the `Topbar`.                                                                                                                  | undefined     |
+| onSidebarToggled           | Function callback which is executed when the sidebar is clicked. The function accepts on parameter `expanded: boolean` which is true if the sidebar is expanded and false if it is collapsed. | undefined     |
+| topbarStyle                | Style for the `Topbar`                                                                                                                                                                        | undefined     |
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+## Contributing
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+You are welcome to contribute with any new features or buf fixes.
 
-## Publishing to NPM
+## Built With
 
-We recommend using [np](https://github.com/sindresorhus/np).
+* [tsdx](https://tsdx.io/)
 
-## Usage with Lerna
+## Versioning
 
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
+## Authors
 
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
+* **Alex Petrove** - *Initial work* - [Alex Petrov - xAl3xFx](https://github.com/xAl3xFx)
 
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
+See also the list of [contributors](https://github.com/xAl3xFx/reactbar/contributors) who participated in this project.
 
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+## License
+
+[MIT License](https://andreasonny.mit-license.org/2019) © Alex Petrov

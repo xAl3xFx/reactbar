@@ -16,16 +16,13 @@ interface Props {
     children: any;
     items: SidebarItem[];
     topBarRightElement?: JSX.Element;
-    onTopBarExpanded?: (expanded: boolean) => void;
+    onSidebarToggled?: (expanded: boolean) => void;
     topbarStyle?: React.CSSProperties;
-
 }
 
 export const Sidebar: React.FC<Props> = (props) => {
     const prevLiClickedRef = useRef<any>();
     const [sidebarExpanded, setSidebarExpanded] = useState(false);
-
-
 
     const handleItemClicked = (index: string, item: SidebarItem) => {
         item.command();
