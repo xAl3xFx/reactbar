@@ -23,6 +23,7 @@
 }
 
 .rb-topbar-expanded {
+    z-index: 1000;
     margin-left: 200px;
 }
 
