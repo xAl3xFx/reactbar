@@ -6,7 +6,7 @@ import './topbar.css'
 interface Props {
     onSidebarToggle: () => void;
     expanded: boolean;
-    topBarRightElement?: JSX.Element;
+    topBarElement?: JSX.Element;
     style?: React.CSSProperties
 }
 
@@ -22,7 +22,7 @@ export const Topbar : React.FC<Props> = props => {
     return <>
         <nav style={props.style} className={`rb-topbar-wrapper ${props.expanded ? 'rb-topbar-expanded' : ''}`}>
             <button id={'toggleSidebar'} onClick={props.onSidebarToggle} ><img src={bars} /></button>
-            {props.topBarRightElement}
+            {props.topBarElement}
         </nav>
     </>
 };

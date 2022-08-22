@@ -15,7 +15,7 @@ export interface SidebarItem {
 interface Props {
     children: any;
     items: SidebarItem[];
-    topBarRightElement?: JSX.Element;
+    topBarElement?: JSX.Element;
     onSidebarToggled?: (expanded: boolean) => void;
     topbarStyle?: React.CSSProperties;
 }
@@ -99,7 +99,7 @@ export const Sidebar: React.FC<Props> = (props) => {
         </div>
 
         <div className={`rb-sidebar-mask ${sidebarExpanded ? 'rb-sidebar-mask-visible' : ''}`}></div>
-        <Topbar onSidebarToggle={() => setSidebarExpanded(!sidebarExpanded)} expanded={sidebarExpanded} topBarRightElement={props.topBarRightElement} style={props.topbarStyle} />
+        <Topbar onSidebarToggle={() => setSidebarExpanded(!sidebarExpanded)} expanded={sidebarExpanded} topBarElement={props.topBarElement} style={props.topbarStyle} />
         <main className={`${sidebarExpanded ? 'rb-sidebar-content-expanded' : 'rb-sidebar-content-collapsed'}`}>
             {props.children}
         </main>

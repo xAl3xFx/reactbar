@@ -130,12 +130,12 @@ interface SidebarItem {
 
 
 ### Props
-| Name                       | Description                                                                                                                                                                                   | Default Value |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| items                      | `SidebarItem[]`                                                                                                                                                                               | required      |
-| topBarRightElement         | Any `JSX.Element` which you want to be displayed on the right of the `Topbar`.                                                                                                                  | undefined     |
-| onSidebarToggled           | Function callback which is executed when the sidebar is clicked. The function accepts on parameter `expanded: boolean` which is true if the sidebar is expanded and false if it is collapsed. | undefined     |
-| topbarStyle                | Style for the `Topbar`                                                                                                                                                                        | undefined     |
+| Name                  | Description                                                                                                                                                                                   | Default Value |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| items                 | `SidebarItem[]`                                                                                                                                                                               | required      |
+| topBarElement         | Any `JSX.Element` which you want to be displayed on the `Topbar`.                                                                                                                             | undefined     |
+| onSidebarToggled      | Function callback which is executed when the sidebar is clicked. The function accepts on parameter `expanded: boolean` which is true if the sidebar is expanded and false if it is collapsed. | undefined     |
+| topbarStyle           | Style for the `Topbar`                                                                                                                                                                        | undefined     |
 
 ## Contributing
 
