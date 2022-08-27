@@ -151,7 +151,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Alex Petrove** - *Initial work* - [Alex Petrov - xAl3xFx](https://github.com/xAl3xFx)
+* **Alex Petrov** - *Initial work* - [Alex Petrov - xAl3xFx](https://github.com/xAl3xFx)
 
 See also the list of [contributors](https://github.com/xAl3xFx/reactbar/contributors) who participated in this project.
 

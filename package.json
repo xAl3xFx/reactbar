@@ -3,6 +3,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "repository": "https://github.com/xAl3xFx/reactbar",
   "files": [
     "dist"
   ],
