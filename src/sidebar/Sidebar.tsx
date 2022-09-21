@@ -26,6 +26,9 @@ export const Sidebar: React.FC<Props> = (props) => {
 
     const handleItemClicked = (index: string, item: SidebarItem) => {
         item.command();
+        if(item.children === undefined && window.innerWidth < 1024){
+            setSidebarExpanded(false)
+        }
 
         const liElement = document.getElementById("li-" + index);
         if(!liElement)
@@ -59,6 +62,7 @@ export const Sidebar: React.FC<Props> = (props) => {
                 }
             }
         }
+
     }
 
     const createMenu = (items: SidebarItem[], parentId: string | undefined) => {

@@ -28,11 +28,6 @@ const App = () => {
         }
     ]
 
-
-    // const topbarRightElement = <>
-    //     <button className={'fa-solid fa-arrow-right-from-bracket'}>Logout</button>
-    // </>
-
     return <>
         <Sidebar items={items} topbarStyle={{background: ''}}  >
             <h1>App component</h1>
