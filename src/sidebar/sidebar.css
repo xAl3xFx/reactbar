@@ -128,11 +128,15 @@ main{
 }
 
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (min-width: 1024px) {
     .rb-sidebar-expanded ul li:hover, .rb-sidebar-collapsed ul li:hover{
         color:#0388e5;
         cursor: pointer;
     }
+}
+
+/*1024px width or less*/
+@media only screen and (max-width: 1024px) {
     .rb-sidebar-wrapper{
         z-index: 1000;
         top: 50px;
