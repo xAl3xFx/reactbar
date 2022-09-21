@@ -18,6 +18,16 @@ const App = () => {
                     className: 'fa fa-list',
                     command: () => console.log('info 2'),
                     label: "Info2",
+                },
+                {
+                    className: 'fa fa-list',
+                    command: () => console.log('info 2'),
+                    label: "Info3",
+                },
+                {
+                    className: 'fa fa-list',
+                    command: () => console.log('info 2'),
+                    label: "Info4",
                 }
             ]
         },
