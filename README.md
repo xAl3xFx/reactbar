@@ -33,9 +33,9 @@ $ yarn add @xal3xfx/reactbar
 
 # Usage
 
-## Sidebar
+## SidebarOld
 
-The **Sidebar** is a wrapper for your application. Put all of your components inside the **Sidebar**.
+The **SidebarOld** is a wrapper for your application. Put all of your components inside the **SidebarOld**.
 
 > Recommended to have `height: 100%` on **html** and **#root** and no `margin` on **body**.
 ```css
@@ -63,7 +63,7 @@ html, #root{
 
 ```typescript jsx
 import * as React  from 'react';
-import {Sidebar, SidebarItem} from "@xal3xfx/reactbar";
+import {SidebarOld, SidebarItem} from "@xal3xfx/reactbar";
 import './index.css'
 
 const App = () => {
@@ -93,10 +93,10 @@ const App = () => {
     ]
 
     return <>
-        <Sidebar items={items} >
+        <SidebarOld items={items} >
             <h1>App component</h1>
             <ChildComponent />
-        </Sidebar>
+        </SidebarOld>
     </>
 };
 
@@ -109,7 +109,7 @@ const ChildComponent = () => {
 export default App;
 ```
 
-> Sidebar has required `items` property which is of type `SidebarItem[]` and represents the items in the sidebar menu.
+> SidebarOld has required `items` property which is of type `SidebarItem[]` and represents the items in the sidebar menu.
 
 #### SidebarItem
 ```typescript

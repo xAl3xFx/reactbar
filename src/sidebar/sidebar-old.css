@@ -26,15 +26,8 @@ main{
 }
 
 .rb-sidebar-collapsed ul li{
+    padding: 1rem;
     border-bottom: 1px solid rgba(207,211,224,.6);
-}
-
-.rb-sidebar-collapsed ul:not(.rb-sidebar-child) > li > div > span {
-    padding: 1.05rem 0;
-}
-
-.rb-sidebar-expanded ul.rb-sidebar-child li{
-    padding-left: 1.5rem !important;
 }
 
 .rb-sidebar-expanded ul{
@@ -45,29 +38,11 @@ main{
     width: 100%;
 }
 
-.rb-sidebar-child {
+.rb-sidebar-hidden{
     display: none !important;
 }
 
-.rb-sidebar-item-expanded .rb-sidebar-child{
-    display: flex !important;
-    flex-direction: column;
-}
-
-.rb-sidebar-wrapper ul li, .rb-sidebar-wrapper ul li ul {
-    /*width: 100%;*/
-}
-
-li.rb-sidebar-item-expanded {
-    color: #0388e5 !important;
-}
-
-.rb-sidebar-wrapper li {
-    cursor: pointer;
-    color: white;
-}
-
-.rb-sidebar-collapsed li.rb-sidebar-active, .rb-sidebar-expanded li.rb-sidebar-active {
+.rb-sidebar-active {
     color:#0388e5 !important;
     font-weight: bolder !important;
 }
@@ -122,25 +97,26 @@ li.rb-sidebar-item-expanded {
 
 .rb-sidebar-expanded ul li{
     user-select: none;
+    padding: 1rem;
     display: flex;
     border-bottom: 1px solid rgba(207,211,224,.6);
 }
 
-.rb-sidebar-expanded ul li div span{
-    padding: 1rem;
+.rb-sidebar-expanded ul li span{
+    padding-left: 0.5rem;
+    width:100%;
 }
 
-.rb-sidebar-expanded ul li div span a{
+.rb-sidebar-expanded ul li span a{
     font-weight: normal;
     font-family: Arial, sans-serif;
-    padding-left: 0.5rem;
 }
 
 .rb-sidebar-wrapper ul {
     list-style: none;
 }
 
-.rb-sidebar-expanded ul li div span i{
+.rb-sidebar-expanded ul li span img{
     position: absolute;
     right: 1.5rem;
     height: 21px;
@@ -153,11 +129,9 @@ li.rb-sidebar-item-expanded {
 
 
 @media only screen and (min-width: 1024px) {
-    .rb-sidebar-expanded ul li:hover > div > span, .rb-sidebar-expanded ul li:hover > div>  span{
+    .rb-sidebar-expanded ul li:hover, .rb-sidebar-collapsed ul li:hover{
         color:#0388e5;
-    }
-    .rb-sidebar-collapsed ul li:hover {
-        color:#0388e5;
+        cursor: pointer;
     }
 }
 

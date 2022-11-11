@@ -6,3 +6,7 @@ html, #root{
     height: 100%;
 }
 
+.sidebar-black {
+    background: #4d505b !important;
+    color: white;
+}
