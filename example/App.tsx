@@ -1,5 +1,5 @@
 import * as React  from 'react';
-import {SidebarOld, SidebarItem} from "../src";
+import {SidebarItem} from "../src";
 import './index.css'
 import {Sidebar} from "../src/sidebar/Sidebar";
 
