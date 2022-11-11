@@ -64,22 +64,15 @@ export const Sidebar: React.FC<Props> = (props) => {
 
         prevLiClickedRef.current = liElement;
 
-        const child = document.getElementById("children-" + index);
-        if (child) {
-            const hidden = child.classList.contains('rb-sidebar-hidden');
-            child.classList.toggle('rb-sidebar-hidden');
-            const parent = child.previousSibling;
-            if (parent) {
-                //@ts-ignore
-                const childSpan = parent.querySelector("span");
-                if (childSpan) {
-                    const img = childSpan.querySelector("i");
-                    if (img) {
-                        if (hidden)
-                            img.className = props.collapseIcon;
-                        else
-                            img.className = props.expandIcon;
-                        // i.classList = "pi pi-chevron-down"
+        if(parentIndex === undefined){
+            const span = liElement.querySelector('span');
+            if(span){
+                const i = span.querySelector('i');
+                if(i){
+                    if(i.className === props.collapseIcon){
+                        i.className = props.expandIcon;
+                    }else{
+                        i.className = props.collapseIcon;
                     }
                 }
             }
@@ -90,8 +83,12 @@ export const Sidebar: React.FC<Props> = (props) => {
         return <ul id={parentId ? 'children-' + parentId : undefined}
                    className={parentId ? 'rb-sidebar-child' : undefined}>
             {items.map((item, elementIndex) => {
-                    const index = (parentId ? parentId + '-' + elementIndex : String(elementIndex))
-                    return <React.Fragment key={index}>
+                    const index = (parentId ? parentId + '-' + elementIndex : String(elementIndex));
+                    const liElement = document.querySelector('#li-' + index);
+                    const groupExpanded = liElement && liElement.classList.contains('rb-sidebar-item-expanded');
+                console.log(groupExpanded)
+
+                return <React.Fragment key={index}>
                         <li id={'li-' + index} className={`${parentId ? 'rb-no-border' : ''}`}
                             onClick={(e) => handleItemClicked(e, index, item, parentId)}>
                             <div style={{width: "100%"}}>
@@ -101,7 +98,7 @@ export const Sidebar: React.FC<Props> = (props) => {
                                                 <a>{item.label}</a>
                                             {
                                                 item.children && item.children.length > 0 ?
-                                                    <i className={props.expandIcon}></i>
+                                                    <i className={groupExpanded ? props.collapseIcon : props.expandIcon}></i>
                                                     : null
                                             }
 
