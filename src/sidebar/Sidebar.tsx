@@ -8,6 +8,7 @@ export interface SidebarItem {
     label: string;
     command: () => void;
     children?: SidebarItem[];
+    disabled?: boolean;
 }
 
 interface Props {
@@ -28,6 +29,9 @@ export const Sidebar: React.FC<Props> = (props) => {
 
     const handleItemClicked = (event : any, index: string, item: SidebarItem, parentIndex: string | undefined) => {
         event.stopPropagation();
+        if(item.disabled)
+            return;
+
         item.command();
         if (item.children === undefined && window.innerWidth < 1024) {
             setSidebarExpanded(false)
