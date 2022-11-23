@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './sidebar.css'
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Topbar} from "./Topbar";
 
 export interface SidebarItem {
@@ -20,12 +20,18 @@ interface Props {
     onSidebarToggled?: (expanded: boolean) => void;
     topbarStyle?: React.CSSProperties;
     className?: string;
-
+    sidebarExpanded?: boolean;
 }
 
 export const Sidebar: React.FC<Props> = (props) => {
     const prevLiClickedRef = useRef<any>();
     const [sidebarExpanded, setSidebarExpanded] = useState(false);
+
+    useEffect(() => {
+        if(props.sidebarExpanded)
+            setSidebarExpanded(true);
+    }, [props.sidebarExpanded]);
+
 
     const handleItemClicked = (event : any, index: string, item: SidebarItem, parentIndex: string | undefined) => {
         event.stopPropagation();

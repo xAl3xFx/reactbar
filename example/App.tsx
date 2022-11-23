@@ -67,7 +67,7 @@ const App = () => {
     ]
 
     return <>
-        <Sidebar items={items} topbarStyle={{background: ''}} className={'sidebar-black'} expandIcon={'fal fa-chevron-down'} collapseIcon={'fal fa-chevron-up'} >
+        <Sidebar sidebarExpanded={true} items={items} topbarStyle={{background: ''}} className={'sidebar-black'} expandIcon={'fal fa-chevron-down'} collapseIcon={'fal fa-chevron-up'} >
             <h1>App component</h1>
             <ChildComponent />
         </Sidebar>
