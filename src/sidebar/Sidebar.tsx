@@ -29,15 +29,15 @@ export const Sidebar: React.FC<Props> = (props) => {
     const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
     useEffect(() => {
-        if(props.sidebarExpanded)
+        if (props.sidebarExpanded)
             setSidebarExpanded(true);
     }, [props.sidebarExpanded]);
 
 
-    const handleItemClicked = (event : any, index: string, item: SidebarItem, parentIndex: string | undefined) => {
-        if(event && event.stopPropagation)
+    const handleItemClicked = (event: any, index: string, item: SidebarItem, parentIndex: string | undefined) => {
+        if (event && event.stopPropagation)
             event.stopPropagation();
-        if(item.disabled)
+        if (item.disabled)
             return;
 
         item.command();
@@ -52,18 +52,18 @@ export const Sidebar: React.FC<Props> = (props) => {
 
         //If there is previously opened menu item - close it
         const previousMenuItem = document.querySelector('.rb-sidebar-item-expanded');
-        if(previousMenuItem && parentIndex === undefined && previousMenuItem !== liElement){
+        if (previousMenuItem && parentIndex === undefined && previousMenuItem !== liElement) {
             previousMenuItem.classList.toggle('rb-sidebar-item-expanded');
         }
 
         if (prevLiClickedRef.current && prevLiClickedRef.current.classList) {
             prevLiClickedRef.current.classList.remove('rb-sidebar-active');
-            if(prevLiClickedRef.current.id && prevLiClickedRef.current.id.indexOf('-') !== prevLiClickedRef.current.id.lastIndexOf('-')){
+            if (prevLiClickedRef.current.id && prevLiClickedRef.current.id.indexOf('-') !== prevLiClickedRef.current.id.lastIndexOf('-')) {
                 prevLiClickedRef.current.classList.toggle('rb-sidebar-item-expanded');
             }
         }
 
-        if(prevLiClickedRef.current === liElement && parentIndex === undefined)
+        if (prevLiClickedRef.current === liElement && parentIndex === undefined)
             liElement.classList.toggle('rb-sidebar-item-expanded')
         else
             liElement.classList.add('rb-sidebar-item-expanded')
@@ -72,14 +72,14 @@ export const Sidebar: React.FC<Props> = (props) => {
 
         prevLiClickedRef.current = liElement;
 
-        if(parentIndex === undefined){
+        if (parentIndex === undefined) {
             const span = liElement.querySelector('span');
-            if(span){
+            if (span) {
                 const i = span.querySelector('i');
-                if(i){
-                    if(i.className === props.collapseIcon){
+                if (i) {
+                    if (i.className === props.collapseIcon) {
                         i.className = props.expandIcon;
-                    }else{
+                    } else {
                         i.className = props.collapseIcon;
                     }
                 }
@@ -87,40 +87,22 @@ export const Sidebar: React.FC<Props> = (props) => {
         }
     }
 
-    const selectMenuItemByName = (itemName: string) => {
-        const sidebarWrapper = document.querySelector(".rb-sidebar-wrapper>ul");
-        if(sidebarWrapper){
-            const anchorTags = sidebarWrapper.querySelectorAll("li a");
-            if(anchorTags){
-                const anchorTagsArray = Array.from(anchorTags);
-                if(anchorTagsArray){
-                    const desiredAnchorTag = anchorTagsArray.find(el => el.innerHTML === itemName);
-                    if(desiredAnchorTag){
-                        const parent1 = desiredAnchorTag.parentNode;
-                        if(parent1){
-                            const parent2 = parent1.parentNode;
-                            if(parent2){
-                                const liElement = parent2.parentNode;
-                                if(liElement){
-                                    const previousMenuItem = document.querySelector('.rb-sidebar-item-expanded');
-                                    if(previousMenuItem && previousMenuItem !== liElement){
-                                        previousMenuItem.classList.toggle('rb-sidebar-item-expanded');
-                                    }
-                                    if (prevLiClickedRef.current && prevLiClickedRef.current.classList) {
-                                        prevLiClickedRef.current.classList.remove('rb-sidebar-active');
-                                        if(prevLiClickedRef.current.id && prevLiClickedRef.current.id.indexOf('-') !== prevLiClickedRef.current.id.lastIndexOf('-')){
-                                            prevLiClickedRef.current.classList.toggle('rb-sidebar-item-expanded');
-                                        }
-                                    }
-                                    //@ts-ignore
-                                    liElement.classList.toggle('rb-sidebar-item-expanded');
-                                    prevLiClickedRef.current = liElement;
-                                }
-                            }
-                        }
-                    }
+    const selectMenuItemById = (itemId: string) => {
+        const liElement = document.querySelector("#" + itemId);
+        if (liElement) {
+            const previousMenuItem = document.querySelector('.rb-sidebar-item-expanded');
+            if (previousMenuItem && previousMenuItem !== liElement) {
+                previousMenuItem.classList.toggle('rb-sidebar-item-expanded');
+            }
+            if (prevLiClickedRef.current && prevLiClickedRef.current.classList) {
+                prevLiClickedRef.current.classList.remove('rb-sidebar-active');
+                if (prevLiClickedRef.current.id && prevLiClickedRef.current.id.indexOf('-') !== prevLiClickedRef.current.id.lastIndexOf('-')) {
+                    prevLiClickedRef.current.classList.toggle('rb-sidebar-item-expanded');
                 }
             }
+            //@ts-ignore
+            liElement.classList.toggle('rb-sidebar-item-expanded');
+            prevLiClickedRef.current = liElement;
         }
     }
 
@@ -132,7 +114,7 @@ export const Sidebar: React.FC<Props> = (props) => {
                     const liElement = document.querySelector('#li-' + index);
                     const groupExpanded = liElement && liElement.classList.contains('rb-sidebar-item-expanded');
 
-                return <React.Fragment key={index}>
+                    return <React.Fragment key={index}>
                         <li id={'li-' + index} className={`${parentId ? 'rb-no-border' : ''}`}
                             onClick={(e) => handleItemClicked(e, index, item, parentId)}>
                             <div style={{width: "100%"}}>
@@ -169,8 +151,8 @@ export const Sidebar: React.FC<Props> = (props) => {
     }
 
     useEffect(() => {
-        if(props.itemExpanded)
-            selectMenuItemByName(props.itemExpanded);
+        if (props.itemExpanded)
+            selectMenuItemById(props.itemExpanded);
     }, [props.itemExpanded]);
 
 

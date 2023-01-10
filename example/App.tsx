@@ -73,8 +73,8 @@ const App = () => {
     return <>
         <Sidebar sidebarExpanded={true} items={items} topbarStyle={{background: ''}} className={'sidebar-black'} expandIcon={'fal fa-chevron-down'} collapseIcon={'fal fa-chevron-up'} itemExpanded={itemExpanded} >
             <h1>App component</h1>
-            <Button label={"Orders"} onClick={() => setItemExpanded('Orders')} />
-            <Button label={"Search"} onClick={() => setItemExpanded('Search')} />
+            <Button label={"Orders"} onClick={() => setItemExpanded('li-1')} />
+            <Button label={"Search"} onClick={() => setItemExpanded('li-2')} />
             <ChildComponent />
         </Sidebar>
     </>
