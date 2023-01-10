@@ -21,6 +21,7 @@ interface Props {
     topbarStyle?: React.CSSProperties;
     className?: string;
     sidebarExpanded?: boolean;
+    itemExpanded?: string;
 }
 
 export const Sidebar: React.FC<Props> = (props) => {
@@ -34,7 +35,8 @@ export const Sidebar: React.FC<Props> = (props) => {
 
 
     const handleItemClicked = (event : any, index: string, item: SidebarItem, parentIndex: string | undefined) => {
-        event.stopPropagation();
+        if(event && event.stopPropagation)
+            event.stopPropagation();
         if(item.disabled)
             return;
 
@@ -85,6 +87,43 @@ export const Sidebar: React.FC<Props> = (props) => {
         }
     }
 
+    const selectMenuItemByName = (itemName: string) => {
+        const sidebarWrapper = document.querySelector(".rb-sidebar-wrapper>ul");
+        if(sidebarWrapper){
+            const anchorTags = sidebarWrapper.querySelectorAll("li a");
+            if(anchorTags){
+                const anchorTagsArray = Array.from(anchorTags);
+                if(anchorTagsArray){
+                    const desiredAnchorTag = anchorTagsArray.find(el => el.innerHTML === itemName);
+                    if(desiredAnchorTag){
+                        const parent1 = desiredAnchorTag.parentNode;
+                        if(parent1){
+                            const parent2 = parent1.parentNode;
+                            if(parent2){
+                                const liElement = parent2.parentNode;
+                                if(liElement){
+                                    const previousMenuItem = document.querySelector('.rb-sidebar-item-expanded');
+                                    if(previousMenuItem && previousMenuItem !== liElement){
+                                        previousMenuItem.classList.toggle('rb-sidebar-item-expanded');
+                                    }
+                                    if (prevLiClickedRef.current && prevLiClickedRef.current.classList) {
+                                        prevLiClickedRef.current.classList.remove('rb-sidebar-active');
+                                        if(prevLiClickedRef.current.id && prevLiClickedRef.current.id.indexOf('-') !== prevLiClickedRef.current.id.lastIndexOf('-')){
+                                            prevLiClickedRef.current.classList.toggle('rb-sidebar-item-expanded');
+                                        }
+                                    }
+                                    //@ts-ignore
+                                    liElement.classList.toggle('rb-sidebar-item-expanded');
+                                    prevLiClickedRef.current = liElement;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     const createMenu = (items: SidebarItem[], parentId: string | undefined) => {
         return <ul id={parentId ? 'children-' + parentId : undefined}
                    className={parentId ? 'rb-sidebar-child' : undefined}>
@@ -92,7 +131,6 @@ export const Sidebar: React.FC<Props> = (props) => {
                     const index = (parentId ? parentId + '-' + elementIndex : String(elementIndex));
                     const liElement = document.querySelector('#li-' + index);
                     const groupExpanded = liElement && liElement.classList.contains('rb-sidebar-item-expanded');
-                console.log(groupExpanded)
 
                 return <React.Fragment key={index}>
                         <li id={'li-' + index} className={`${parentId ? 'rb-no-border' : ''}`}
@@ -129,6 +167,12 @@ export const Sidebar: React.FC<Props> = (props) => {
             )}
         </ul>
     }
+
+    useEffect(() => {
+        if(props.itemExpanded)
+            selectMenuItemByName(props.itemExpanded);
+    }, [props.itemExpanded]);
+
 
     return <>
         <div
