@@ -1,5 +1,5 @@
 {
-  "version": "0.3.5",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -64,10 +64,10 @@
     "bar"
   ],
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.0.1",
     "@types/lodash.clonedeep": "^4.5.7",
     "@types/lodash.isequalwith": "^4.4.7",
     "@types/lodash.isfunction": "^3.0.7",
-    "@size-limit/preset-small-lib": "^8.0.1",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "husky": "^8.0.1",
@@ -81,7 +81,6 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
-
   },
   "publishConfig": {
     "access": "public"
