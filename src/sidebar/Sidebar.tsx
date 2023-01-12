@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {SidebarItem} from "./SidebarOld";
 import {Topbar} from "./Topbar";
 import './sidebar.css'
 import cloneDeep from 'lodash.clonedeep';
@@ -20,6 +19,15 @@ interface Props {
     sidebarExpanded?: boolean;
     itemPathsMap?: { [key: string]: string };
     locationPath?: string;
+}
+
+export interface SidebarItem {
+    className: string;
+    label: string;
+    command: () => void;
+    children?: SidebarItem[];
+    disabled?: boolean;
+    id: string;
 }
 
 export interface SidebarModel {
