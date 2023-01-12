@@ -14,7 +14,7 @@ export class SidebarUtils {
             parent: parentItem,
             children: []
         }
-        const children : SidebarItemModel[] = (item.children || []).map(item => this.convertSidebarItemToSidebarItemModel(item, currentParent));
+        const children : SidebarItemModel[] = (item.children || []).map(item => SidebarUtils.convertSidebarItemToSidebarItemModel(item, currentParent));
         currentParent.children = children;
         return currentParent;
     }
@@ -25,7 +25,7 @@ export class SidebarUtils {
         idsArr.push(item.id);
         if (item.children) {
             for (let childItem of item.children)
-                this.validateUniqueItemIds(childItem, idsArr);
+                SidebarUtils.validateUniqueItemIds(childItem, idsArr);
         }
 
         return idsArr;
@@ -34,7 +34,7 @@ export class SidebarUtils {
     static validateItems = (items: SidebarItem[], itemPathsMap: {[key: string] : string}) => {
         let itemsIds = [];
         for(let item of items){
-            const currIds = this.validateUniqueItemIds(item);
+            const currIds = SidebarUtils.validateUniqueItemIds(item);
             itemsIds.push(...currIds);
         }
 
