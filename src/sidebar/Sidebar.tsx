@@ -49,7 +49,7 @@ export interface SidebarItemModel {
 
 export const Sidebar : React.FC<Props> = props => {
 
-    const [sidebarModel, setSidebarModel] = useState<SidebarModel>({expanded: false, items: []});
+    const [sidebarModel, setSidebarModel] = useState<SidebarModel>({expanded: true, items: []});
     const [location, setLocation] = useState<string>();
     const [lastMouseClickedId, setLastMouseClickedId] = useState<string>();
     const [itemsFromProps, setItemsFromProps] = useState<SidebarItem[]>();
@@ -159,6 +159,10 @@ export const Sidebar : React.FC<Props> = props => {
 
         //Select current item
         if(item !== undefined){
+            //Auto collapse on mobile click
+            if (window.innerWidth < 1024) {
+                setSidebarModel(prevState => {return {...prevState, expanded: false}});
+            }
 
             if(isMouseClick){
                 setLastMouseClickedId(itemId);
