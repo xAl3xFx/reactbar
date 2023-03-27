@@ -160,7 +160,7 @@ export const Sidebar : React.FC<Props> = props => {
         //Select current item
         if(item !== undefined){
             //Auto collapse on mobile click
-            if (window.innerWidth < 1024) {
+            if (window.innerWidth < 1024 && item.children.length === 0) {
                 setSidebarModel(prevState => {return {...prevState, expanded: false}});
             }
 
