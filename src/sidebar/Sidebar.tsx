@@ -19,6 +19,7 @@ interface Props {
     sidebarExpanded?: boolean;
     itemPathsMap?: { [key: string]: string };
     locationPath?: string;
+    expandAllToggle?: boolean;
 }
 
 export interface SidebarItem {
@@ -127,10 +128,10 @@ export const Sidebar : React.FC<Props> = props => {
         return undefined;
     }
 
-    const expandRecursively = (item: SidebarItemModel, expand: boolean) => {
+    const expandReverseRecursively = (item: SidebarItemModel, expand: boolean) => {
         item.expanded = expand;
         if(item.parent)
-            expandRecursively(item.parent, expand);
+            expandReverseRecursively(item.parent, expand);
     }
 
     const collapseAndDeactivateAll = (items: SidebarItemModel[]) => {
@@ -173,7 +174,7 @@ export const Sidebar : React.FC<Props> = props => {
             //Collapse and unselect all items
             collapseAndDeactivateAll(items);
             if(item.parent)
-                expandRecursively(item.parent, true);
+                expandReverseRecursively(item.parent, true);
             item.expanded = !expanded;
             item.active = true;
 
@@ -224,6 +225,27 @@ export const Sidebar : React.FC<Props> = props => {
     const toggleSidebar = () => {
         setSidebarModel(prevState => {return {...prevState, expanded: !prevState.expanded}});
     }
+    
+    const handleCollapseAll = () => {
+        const items = cloneDeep(sidebarModel.items);
+        collapseAndDeactivateAll(items);
+
+        setSidebarModel(prevState => {return {...prevState, items}});
+    }
+    
+    const expandRecursively = (item: SidebarItemModel) => {
+        if(item.children.length)
+            item.expanded = true;
+        item.children.forEach(child => expandRecursively(child));
+    }
+    
+    const handleExpandAll = () => {
+        const items = cloneDeep(sidebarModel.items);
+        
+        items.forEach(item => expandRecursively(item));
+        
+        setSidebarModel(prevState => {return {...prevState, items}});
+    }
 
     return <>
         <div
@@ -231,8 +253,8 @@ export const Sidebar : React.FC<Props> = props => {
             {createMenu(sidebarModel.items)}
         </div>
         <div className={`rb-sidebar-mask ${sidebarModel.expanded ? 'rb-sidebar-mask-visible' : ''}`}></div>
-        <Topbar onSidebarToggle={toggleSidebar} expanded={sidebarModel.expanded}
-                topBarElement={props.topBarElement} style={props.topbarStyle}/>
+        <Topbar onSidebarToggle={toggleSidebar} expanded={sidebarModel.expanded} expandIcon={props.expandIcon} onExpandAll={handleExpandAll} expandAllToggle={!!props.expandAllToggle}
+                topBarElement={props.topBarElement} style={props.topbarStyle} collapseIcon={props.collapseIcon} onCollapseAll={handleCollapseAll}/>
         <main className={`${sidebarModel.expanded ? 'rb-sidebar-content-expanded' : 'rb-sidebar-content-collapsed'}`}>
             {props.children}
         </main>

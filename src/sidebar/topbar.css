@@ -50,3 +50,21 @@
         width: calc(100% - 250px)
     }
 }
+
+.rb-topbar-expander{
+    display: none;
+}
+
+.rb-topbar-expanded .rb-topbar-expander{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.25rem;
+    color: #ddd;
+}
+
+.rb-topbar-expander i{
+    cursor: pointer;
+}

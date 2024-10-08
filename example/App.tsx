@@ -19,6 +19,12 @@ const App = () => {
 
     const items: SidebarItem[] = [
         {
+            id: 'search',
+            className: 'fas fa-search',
+            command: () => navigate('/search'),
+            label: "Search"
+        },
+        {
             className: 'fas fa-house',
             command: () => navigate('/'),
             label: "Home",
@@ -81,12 +87,6 @@ const App = () => {
                     label: "Order 4",
                 }
             ]
-        },
-        {
-            id: 'search',
-            className: 'fas fa-search',
-            command: () => navigate('/search'),
-            label: "Search"
         }
     ]
 
@@ -110,7 +110,7 @@ const App = () => {
 
     return <>
         <Sidebar sidebarExpanded={true} items={items} topbarStyle={{background: ''}} className={'sidebar-black'}
-                 expandIcon={'fal fa-chevron-down'} collapseIcon={'fal fa-chevron-up'}
+                 expandIcon={'fas fa-chevron-down'} collapseIcon={'fas fa-chevron-up'}
                  itemPathsMap={itemPathsMap} locationPath={locationPath}>
             <h1>App component</h1>
             <Button label={"Orders"} onClick={() => navigate('/orders')}/>
