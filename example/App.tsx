@@ -85,6 +85,14 @@ const App = () => {
                     className: 'fa fa-list',
                     command: () => navigate('/orders/4'),
                     label: "Order 4",
+                    children: [
+                        {
+                            id: 'orders-4-1',
+                            className: 'fa fa-list',
+                            command: () => navigate('/orders/4/1'),
+                            label: "Order 4-1",
+                        }
+                    ]
                 }
             ]
         }
@@ -105,6 +113,7 @@ const App = () => {
         '^\\/orders\\/2$' : 'orders-2',
         '^\\/orders\\/3$' : 'orders-3',
         '^\\/orders\\/4$' : 'orders-4',
+        '^\\/orders\\/4\\/1$' : 'orders-4-1',
         '^\\/search$' : 'search',
     }
 
