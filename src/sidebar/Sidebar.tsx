@@ -192,7 +192,7 @@ export const Sidebar : React.FC<Props> = props => {
                 // console.log(`Generating item for ${item.id} which is ${item.expanded ? '' : 'not'} expanded and ${item.active ? '' : 'not'} active`)
                 return <React.Fragment key={item.id}>
                     <li id={'li-' + item.id}
-                        className={`${item.parent !== undefined ? 'rb-no-border' : ''} ${item.expanded ? 'rb-sidebar-item-expanded' : ''} ${item.active ? 'rb-sidebar-active' : ''}`}
+                        className={`${item.parent !== undefined ? 'rb-no-border' : ''} ${item.expanded && item.children.length ? 'rb-sidebar-item-expanded' : ''} ${item.active ? 'rb-sidebar-active' : ''}`}
                         onClick={(e) => handleItemClicked(e, item.id, true)}>
                         <div style={{width: "100%"}}>
                             {
